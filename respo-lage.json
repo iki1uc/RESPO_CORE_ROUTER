@@ -1,1 +1,10 @@
 
+{
+    "ui": "stable",
+    "scan": "ready",
+    "axi": "linked",
+    "arg": "ready",
+    "position": "tracking",
+    "rotation": "enabled",
+    "multi-norm": "valid"
+}
