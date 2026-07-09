@@ -4,32 +4,21 @@
     <title>RESPO_CORE_ROUTER – System Router</title>
     <script src="router.js"></script>
 </head>
+
 <body>
     <h1>RESPO_CORE_ROUTER</h1>
     <p>Zentraler Router für alle RESPO‑Module.</p>
 
-    <h2>Module</h2>
-    <ul>
-        <li>UI-Scanner</li>
-        <li>ARG-SCAN</li>
-        <li>POSITION-USER</li>
-        <li>Rotation</li>
-        <li>Multi-Norm</li>
-        <li>AXI-Link</li>
-    </ul>
-
     <h2>Aktionen</h2>
-    <button onclick="route('scan')">Scan starten</button>
-    <button onclick="route('ui')">UI aktualisieren</button>
-    <button onclick="route('axi')">AXI-Link prüfen</button>
+    <button onclick="Router.route('scan')">Scan starten</button>
+    <button onclick="Router.route('ui')">UI aktualisieren</button>
+    <button onclick="Router.route('axi')">AXI-Link prüfen</button>
+    <button onclick="Router.route('arg')">Argument-Scan</button>
+    <button onclick="Router.route('pos')">User-Position</button>
+    <button onclick="Router.route('rot')">Rotation</button>
+    <button onclick="Router.route('norm')">Multi-Norm prüfen</button>
 
+    <h2>UI-Scanner</h2>
     <iframe src="UI-SCANNER.html" width="100%" height="400"></iframe>
-
-    <script>
-        function route(target) {
-            console.log("Routing zu:", target);
-            Router.route(target);
-        }
-    </script>
 </body>
 </html>
