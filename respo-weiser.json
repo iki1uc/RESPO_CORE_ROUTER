@@ -1,1 +1,14 @@
+{
+    "router": "RESPO_CORE_ROUTER",
+    "modules": [
+        "RESPO_ARG_SCAN",
+        "RESPO_POSITION_USER",
+        "RESPO_ROTATION",
+        "RESPO_MULTI_NORM",
+        "RESPO_AXI_LINK",
+        "RESPO_SCAN_HUB"
+    ],
+    "status": "active",
+    "version": "1.0"
+}
 
