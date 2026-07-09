@@ -4,15 +4,31 @@ const Router = {
 
         switch(target) {
             case 'scan':
-                console.log("Scan-Hub aktivieren");
+                RESPO_SCAN_HUB.run();
                 break;
 
             case 'ui':
-                console.log("UI-Status aktualisieren");
+                RESPO_UI_STATUS.update();
                 break;
 
             case 'axi':
-                console.log("AXI-Link prüfen");
+                RESPO_AXI_LINK.check();
+                break;
+
+            case 'arg':
+                RESPO_ARG_SCAN.run();
+                break;
+
+            case 'pos':
+                RESPO_POSITION_USER.update();
+                break;
+
+            case 'rot':
+                RESPO_ROTATION.rotate();
+                break;
+
+            case 'norm':
+                RESPO_MULTI_NORM.validate();
                 break;
 
             default:
