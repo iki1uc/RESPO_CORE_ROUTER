@@ -1,5 +1,20 @@
-<body id="UI-SCANNER"
-      data-iki="phase:omelett; einstieg:ui; inhalt:scanner; start:start2;">
-  UI-SCANNER – Scanoberfläche aktiv
-</body>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UI-SCANNER</title>
+</head>
+<body>
+    <h1>UI-SCANNER</h1>
+    <p>Scannt UI-Elemente und meldet sie an den CORE_ROUTER.</p>
 
+    <button onclick="scanUI()">UI scannen</button>
+
+    <script>
+        function scanUI() {
+            const elements = document.querySelectorAll('*');
+            console.log("UI-Scan:", elements.length, "Elemente gefunden");
+            parent.Router.reportUI(elements.length);
+        }
+    </script>
+</body>
+</html>
