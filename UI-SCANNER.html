@@ -3,6 +3,7 @@
 <head>
     <title>UI-SCANNER</title>
 </head>
+
 <body>
     <h1>UI-SCANNER</h1>
     <p>Scannt UI-Elemente und meldet sie an den CORE_ROUTER.</p>
@@ -12,7 +13,6 @@
     <script>
         function scanUI() {
             const elements = document.querySelectorAll('*');
-            console.log("UI-Scan:", elements.length, "Elemente gefunden");
             parent.Router.reportUI(elements.length);
         }
     </script>
