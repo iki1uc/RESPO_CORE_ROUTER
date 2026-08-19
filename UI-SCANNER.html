@@ -15,7 +15,6 @@
         function scanUI() {
             const elements = document.querySelectorAll('*');
 
-            // Sicherer Router‑Call
             if (window.parent && window.parent.Router) {
                 window.parent.Router.reportUI(elements.length);
             } else {
