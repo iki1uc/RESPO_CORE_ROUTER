@@ -1,4 +1,3 @@
-
 // RESPO_UI_STATUS – NEUE VERSION
 // Global, stabil, kompatibel mit Router
 
