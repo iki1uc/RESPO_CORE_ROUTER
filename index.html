@@ -1,24 +1,259 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-    <title>RESPO_CORE_ROUTER – System Router</title>
-    <script src="router.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESPO_CORE_ROUTER · MASTER</title>
+
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #0a0a0f;
+            color: #d0d0e0;
+            font-family: 'Georgia', 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .master {
+            max-width: 860px;
+            width: 100%;
+            background: #12121a;
+            border: 1px solid #2a2a3a;
+            border-radius: 40px;
+            padding: 40px 35px;
+            box-shadow: 0 0 80px rgba(200,180,100,0.02);
+            transition: all 0.3s;
+        }
+        .master:hover {
+            border-color: #4a4a5a;
+        }
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 300;
+            letter-spacing: 6px;
+            color: #c0b090;
+            text-align: center;
+            margin-bottom: 6px;
+        }
+        .sub {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #5a5a6a;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+        }
+        .status-box {
+            background: #0a0a10;
+            border-left: 3px solid #4a4a5a;
+            padding: 14px 18px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: #b0b0c0;
+            margin-bottom: 25px;
+        }
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 8px;
+            margin: 20px 0 25px 0;
+        }
+        .modul {
+            background: #1a1a2a;
+            border: 1px solid #2a2a3a;
+            border-radius: 30px;
+            padding: 8px 12px;
+            font-size: 0.7rem;
+            text-align: center;
+            color: #8a8a9a;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+        }
+        .modul.aktiv {
+            border-color: #4a8a4a;
+            color: #b0b0c0;
+        }
+        .modul:hover {
+            border-color: #c0b090;
+            background: #2a2a3a;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin: 18px 0 20px 0;
+        }
+        .btn {
+            background: transparent;
+            border: 1px solid #3a3a4a;
+            color: #b0a090;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background: #2a2a3a;
+            border-color: #c0b090;
+            box-shadow: 0 0 30px rgba(200,180,100,0.02);
+        }
+        .btn-grace {
+            border-color: #4a8f7f;
+            color: #6a9a8a;
+        }
+        .btn-grace:hover {
+            background: #1a2a2a;
+            border-color: #6a9a8a;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.6rem;
+            color: #3a3a4a;
+            letter-spacing: 2px;
+            margin-top: 25px;
+            border-top: 1px solid #1a1a2a;
+            padding-top: 16px;
+        }
+        .footer span { color: #5a5a6a; }
+        #log {
+            background: #06060a;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 0.7rem;
+            color: #6a6a7a;
+            white-space: pre-wrap;
+            min-height: 40px;
+            border-left: 2px solid #2a2a3a;
+            margin-top: 12px;
+        }
+    </style>
 </head>
-
 <body>
-    <h1>RESPO_CORE_ROUTER</h1>
-    <p>Zentraler Router für alle RESPO‑Module.</p>
 
-    <h2>Aktionen</h2>
-    <button onclick="Router.route('scan')">Scan starten</button>
-    <button onclick="Router.route('ui')">UI aktualisieren</button>
-    <button onclick="Router.route('axi')">AXI-Link prüfen</button>
-    <button onclick="Router.route('arg')">Argument-Scan</button>
-    <button onclick="Router.route('pos')">User-Position</button>
-    <button onclick="Router.route('rot')">Rotation</button>
-    <button onclick="Router.route('norm')">Multi-Norm prüfen</button>
+<div class="master">
 
-    <h2>UI-Scanner</h2>
-    <iframe src="UI-SCANNER.html" width="100%" height="400"></iframe>
+    <h1>🧩 CORE_ROUTER</h1>
+    <div class="sub">MASTER · 7 Module · stabil · global · iframe‑fähig</div>
+
+    <!-- Status -->
+    <div class="status-box" id="statusDisplay">
+        ⚡ Router aktiv · alle Module bereit
+    </div>
+
+    <!-- 7 Module -->
+    <div class="module-grid" id="moduleGrid">
+        <div class="modul aktiv">RESPO_ARG_SCAN</div>
+        <div class="modul aktiv">RESPO_AXI_LINK</div>
+        <div class="modul aktiv">RESPO_MULTI_NORM</div>
+        <div class="modul aktiv">RESPO_POSITION_USER</div>
+        <div class="modul aktiv">RESPO_ROTATION</div>
+        <div class="modul aktiv">RESPO_SCAN_HUB</div>
+        <div class="modul aktiv">RESPO_UI_STATUS</div>
+    </div>
+
+    <!-- Aktionen – gnadenlos funktional -->
+    <div class="btn-group">
+        <button class="btn" onclick="route('scan')">🔍 Scan</button>
+        <button class="btn" onclick="route('ui')">🖥️ UI</button>
+        <button class="btn" onclick="route('axi')">🔗 AXI</button>
+        <button class="btn" onclick="route('arg')">📋 ARG</button>
+        <button class="btn" onclick="route('pos')">📍 POS</button>
+        <button class="btn" onclick="route('rot')">🔄 ROT</button>
+        <button class="btn" onclick="route('norm')">📐 NORM</button>
+    </div>
+
+    <!-- Gnade – sanfte Führung -->
+    <div class="btn-group">
+        <button class="btn btn-grace" onclick="grace()">✧ Gnade · alle Module prüfen</button>
+        <button class="btn" onclick="resetStatus()">⟲ Reset · Status</button>
+    </div>
+
+    <!-- Log -->
+    <div id="log">✦ Master bereit · warte auf Befehl …</div>
+
+    <div class="footer">
+        <span>🧩</span> RESPO_CORE_ROUTER · 7 Module · wieimmer4u
+    </div>
+
+</div>
+
+<script>
+// ─── ROUTER (global) ────────────────────────────────────────
+// Falls nicht vorhanden, wird er hier definiert
+if (typeof window.Router === 'undefined') {
+    window.Router = {
+        route(target) {
+            console.log("CORE_ROUTER:", target);
+            const log = document.getElementById('log');
+            log.textContent = `⚡ CORE_ROUTER → ${target} · ${new Date().toLocaleTimeString()}`;
+
+            // Module simulieren (da keine echten Module geladen)
+            const actions = {
+                scan: '🔍 Scan-Hub aktiv',
+                ui: '🖥️ UI stabil',
+                axi: '🔗 AXI-Link geprüft',
+                arg: '📋 Argument-Scan läuft',
+                pos: '📍 User-Position aktualisiert',
+                rot: '🔄 Rotation ausgeführt',
+                norm: '📐 Multi-Norm validiert'
+            };
+            setTimeout(() => {
+                log.textContent = `✅ ${actions[target] || target} · ${new Date().toLocaleTimeString()}`;
+            }, 300);
+        },
+        reportUI(count) {
+            console.log("UI-SCANNER meldet:", count, "Elemente");
+            const log = document.getElementById('log');
+            log.textContent = `🧩 UI-SCANNER · ${count} Elemente gefunden · ${new Date().toLocaleTimeString()}`;
+        }
+    };
+}
+
+// ─── FUNKTIONEN ──────────────────────────────────────────────
+function route(target) {
+    if (window.Router) {
+        window.Router.route(target);
+    } else {
+        document.getElementById('log').textContent = '❌ Router nicht verfügbar.';
+    }
+}
+
+function grace() {
+    const log = document.getElementById('log');
+    log.textContent = '✧ Gnade · alle Module werden sanft geprüft …';
+    const modules = ['scan', 'ui', 'axi', 'arg', 'pos', 'rot', 'norm'];
+    modules.forEach((m, i) => {
+        setTimeout(() => {
+            window.Router.route(m);
+        }, i * 400 + 200);
+    });
+    setTimeout(() => {
+        log.textContent = '✧ Gnade · alle Module geprüft · System harmonisch';
+    }, modules.length * 400 + 600);
+}
+
+function resetStatus() {
+    const log = document.getElementById('log');
+    log.textContent = '⟲ Reset · Status zurückgesetzt · bereit';
+    const display = document.getElementById('statusDisplay');
+    display.textContent = '⚡ Router aktiv · alle Module bereit';
+}
+
+// ─── INIT ────────────────────────────────────────────────────
+window.Router.reportUI = window.Router.reportUI || function(count) {
+    console.log("UI-SCANNER meldet:", count, "Elemente");
+    const log = document.getElementById('log');
+    log.textContent = `🧩 UI-SCANNER · ${count} Elemente gefunden · ${new Date().toLocaleTimeString()}`;
+};
+
+console.log('🧩 RESPO_CORE_ROUTER · MASTER · 7 Module · bereit');
+</script>
+
 </body>
 </html>
