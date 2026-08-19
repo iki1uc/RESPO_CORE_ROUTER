@@ -1,19 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-    <title>UI-SCANNER</title>
+    <meta charset="UTF-8">
+    <title>UI‑SCANNER</title>
 </head>
 
 <body>
-    <h1>UI-SCANNER</h1>
-    <p>Scannt UI-Elemente und meldet sie an den CORE_ROUTER.</p>
+    <h1>UI‑SCANNER</h1>
+    <p>Scannt UI‑Elemente und meldet sie an den CORE_ROUTER.</p>
 
     <button onclick="scanUI()">UI scannen</button>
 
     <script>
         function scanUI() {
             const elements = document.querySelectorAll('*');
-            parent.Router.reportUI(elements.length);
+
+            // Sicherer Router‑Call
+            if (window.parent && window.parent.Router) {
+                window.parent.Router.reportUI(elements.length);
+            } else {
+                console.log("Router nicht erreichbar.");
+            }
         }
     </script>
 </body>
