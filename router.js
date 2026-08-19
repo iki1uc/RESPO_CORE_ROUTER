@@ -3,7 +3,7 @@
 // Vollständig repariert, global, stabil, iframe‑fähig
 // ─────────────────────────────────────────────
 
-// 1) Module global machen (damit Router sie sieht)
+// 1) Module global machen
 window.RESPO_ARG_SCAN = window.RESPO_ARG_SCAN || { 
     run() { console.log("Argument-Scan läuft…"); }
 };
@@ -31,7 +31,7 @@ window.RESPO_SCAN_HUB = window.RESPO_SCAN_HUB || {
 // 2) Fehlendes Modul RESPO_UI_STATUS hinzufügen
 window.RESPO_UI_STATUS = window.RESPO_UI_STATUS || {
     update() {
-        console.log("UI-Status aktualisiert.");
+        console.log("UI‑Status aktualisiert.");
         console.log("UI stabil.");
     }
 };
